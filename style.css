@@ -1137,61 +1137,145 @@ section.block {
     gap: 0.4rem 1.2rem;
 }
 
-/* Support page */
+/* Support page: a head in big type on Noche, then the questions and the
+   form on the page's own ground. */
 
-.page {
-    max-width: 46rem;
-    padding-bottom: 56px;
+.support .top {
+    background: #000000;
+    color: #ffffff;
 }
 
-.page h1 {
-    font-size: clamp(2.2rem, 5vw, 3.2rem);
+.support-head {
+    padding: clamp(3rem, 8vw, 6rem) 0 clamp(3.5rem, 8vw, 6rem);
+    background: #000000;
+    color: #ffffff;
+}
+
+.support-head .eyebrow,
+.support-head .lede {
+    color: #b3b3b3;
+}
+
+.support-head a {
+    color: #ffffff;
+}
+
+.support-head h1 {
+    margin: 0;
+    font-size: clamp(3.4rem, 11vw, 9rem);
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+    font-weight: 700;
+}
+
+.page {
+    padding: clamp(3rem, 7vw, 5rem) 0 6rem;
+}
+
+.page > * {
+    max-width: 52rem;
 }
 
 .page h2 {
-    margin: 40px 0 14px;
-    font-size: 1.5rem;
-    letter-spacing: -0.01em;
+    margin: 0 0 1.5rem;
+    font-size: clamp(2rem, 4.4vw, 3.2rem);
+    letter-spacing: -0.035em;
+    line-height: 1;
+}
+
+.page h2 + .faq,
+.page h2 + form {
+    margin-top: 0;
+}
+
+.faq {
+    margin-bottom: clamp(3.5rem, 8vw, 5.5rem);
+    border-top: 1px solid var(--separator);
 }
 
 .faq details {
-    background: var(--surface);
-    border-radius: 16px;
-    padding: 16px 20px;
-    margin: 10px 0;
+    border-bottom: 1px solid var(--separator);
 }
 
 .faq summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    min-height: 44px;
+    padding: 1.1rem 0;
     cursor: pointer;
+    font-size: clamp(1.2rem, 2.2vw, 1.5rem);
     font-weight: 650;
+    letter-spacing: -0.01em;
+    list-style: none;
+}
+
+.faq summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq summary::after {
+    content: "+";
+    flex: none;
+    color: var(--accent);
+    font-size: 1.6em;
+    font-weight: 400;
+    line-height: 1;
+    transition: transform 0.3s var(--ease);
+}
+
+.faq details[open] summary::after {
+    transform: rotate(45deg);
 }
 
 .faq details p {
-    margin: 10px 0 0;
+    margin: 0 0 1.4rem;
+    max-width: 42rem;
     color: var(--muted);
 }
 
 form {
-    background: var(--surface);
-    border-radius: 22px;
-    padding: 24px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.7rem;
+    padding: clamp(1.4rem, 3vw, 2.2rem);
+    border-radius: 28px;
+    background: var(--surface);
 }
 
 fieldset.segmented {
-    border: 0;
-    padding: 0;
-    margin: 0 0 6px;
     display: flex;
     flex-wrap: wrap;
-    gap: 16px;
+    gap: 0.4rem;
+    margin: 0 0 0.6rem;
+    padding: 0;
+    border: 0;
 }
 
 fieldset.segmented legend {
+    margin-bottom: 0.6rem;
     font-weight: 650;
-    margin-bottom: 6px;
+}
+
+fieldset.segmented label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-height: 44px;
+    padding: 0 1.1rem;
+    border-radius: 999px;
+    background: var(--bg);
+    cursor: pointer;
+}
+
+fieldset.segmented label:has(input:checked) {
+    background: var(--text);
+    color: var(--bg);
+}
+
+fieldset.segmented input {
+    accent-color: var(--accent);
 }
 
 label {
@@ -1201,12 +1285,12 @@ label {
 input[type="text"],
 textarea {
     width: 100%;
-    font: inherit;
-    color: var(--text);
-    background: var(--bg);
+    padding: 0.8rem 1rem;
     border: 1px solid var(--separator);
-    border-radius: 12px;
-    padding: 12px 14px;
+    border-radius: 14px;
+    background: var(--bg);
+    color: var(--text);
+    font: inherit;
 }
 
 .hint {
@@ -1226,14 +1310,19 @@ textarea {
 button[type="submit"] {
     align-self: flex-start;
     min-height: 52px;
-    padding: 0 28px;
+    padding: 0 2rem;
     border: 0;
-    border-radius: 26px;
+    border-radius: 999px;
     background: var(--accent);
     color: var(--on-accent);
     font: inherit;
     font-weight: 700;
     cursor: pointer;
+    transition: transform 0.2s var(--ease);
+}
+
+button[type="submit"]:active {
+    transform: scale(0.97);
 }
 
 button[type="submit"]:disabled {
