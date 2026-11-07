@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Vale! – Live Transcripts</title>
-<meta name="description" content="Vale! writes down what is said in the room, live and in large type, for people who are losing their hearing. In development for iPhone, iPad and Mac.">
+<meta name="description" content="Vale! writes down what is said in the room, live and in large type, for anyone who is losing their hearing. In development for iPhone, iPad and Mac.">
 <meta property="og:title" content="Vale! – Live Transcripts">
 <meta property="og:description" content="What is said in the room, live and in large type. In development for iPhone, iPad and Mac.">
 <meta property="og:type" content="website">
@@ -12,70 +12,197 @@
 <meta property="og:image" content="https://vale-live-transcripts.github.io/vale-webpage/icon-512.png">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<meta name="theme-color" content="#f2f2f7" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#000000">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
-<header class="wrap top">
-<a class="brand" href="./"><img src="favicon.png" alt="" width="40" height="40">Vale!</a>
-<nav><a href="support.html">Support</a></nav>
+<body class="home">
+<a class="skip" href="#main">Skip to content</a>
+<header class="top" id="top">
+<div class="wrap top-inner">
+<a class="brand" href="./"><img src="favicon.png" alt="" width="32" height="32">Vale!</a>
+<nav aria-label="Site"><a href="#features">Features</a><a href="#private">Privacy</a><a href="support.html">Support</a></nav>
+<button class="scale js-only" id="scale" type="button" aria-pressed="false">A+<span class="sr"> Make this page’s text larger</span></button>
+</div>
 </header>
 
-<main>
-<section class="wrap hero">
-<div>
-<span class="badge">In development · iPhone, iPad and Mac</span>
-<h1>Every word,<br>big and clear.</h1>
-<p class="lede">Vale! writes down what is said in the room, live and in large type, for people who are losing their hearing. Spanish first, German and English too.</p>
+<main id="main">
+<section class="hero" id="hero" aria-labelledby="hero-title">
+<h1 class="sr" id="hero-title">Vale! Every word, big and clear.</h1>
+<div class="wrap stage" id="stage">
+<p class="pill" id="pill"><i aria-hidden="true"></i><span id="pill-text">Listening · English</span></p>
+<div class="lines" id="lines" aria-hidden="true">
+<p class="line old">Every word, big and clear.</p>
+<p class="line old">Vale! writes down what is said in the room,</p>
+<p class="line new">live, and in large type.</p>
 </div>
-<figure>
-<img src="images/iphone-live.webp" width="340" height="739" alt="A design of Vale! on iPhone: a dinner conversation in Spanish, the newest line in very large type, a text size control and a red Stop button.">
-<figcaption>A design preview, not a screenshot of a finished app.</figcaption>
-</figure>
+<p class="sr">Vale! writes down what is said in the room, live and in large type, for anyone who is losing their hearing or finds a conversation hard to follow. Below, a made-up family dinner is captioned the way the app shows it.</p>
+</div>
+<div class="wrap">
+<div class="controls">
+<div class="js-only control-row" role="group" aria-label="Try the captions">
+<button class="btn stop" id="go" type="button" aria-pressed="true">
+<svg class="go-stop" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><rect x="2" y="2" width="12" height="12" rx="2.5" fill="currentColor"/></svg>
+<svg class="go-start" width="16" height="16" viewBox="0 0 16 16" aria-hidden="true"><path d="M8 10a2 2 0 0 0 2-2V4a2 2 0 0 0-4 0v4a2 2 0 0 0 2 2Zm3.5-2a3.5 3.5 0 0 1-7 0H3a5 5 0 0 0 4.25 4.94V14h1.5v-1.06A5 5 0 0 0 13 8h-1.5Z" fill="currentColor"/></svg>
+<span id="go-text">Stop</span></button>
+<button class="btn ghost" id="smaller" type="button" aria-label="Smaller text">A−</button>
+<button class="btn ghost" id="larger" type="button" aria-label="Larger text">A+</button>
+</div>
+<p class="cue">In development · iPhone, iPad and Mac</p>
+<div class="dots js-only" role="group" aria-label="Caption colours">
+<button class="dot" type="button" data-theme="noche" aria-label="Noche: white on black" aria-pressed="true"></button>
+<button class="dot" type="button" data-theme="dia" aria-label="Día: black on white" aria-pressed="false"></button>
+<button class="dot" type="button" data-theme="amarillo" aria-label="Amarillo: yellow on black" aria-pressed="false"></button>
+<button class="dot" type="button" data-theme="papel" aria-label="Papel: dark on paper" aria-pressed="false"></button>
+</div>
+</div>
+</div>
 </section>
 
-<section class="wrap features" aria-label="What Vale! is designed to do">
-<article class="feature">
+<section class="block" id="features" aria-labelledby="tap-title">
+<div class="wrap split">
+<div>
 <p class="eyebrow">One tap</p>
-<h2>Start, read, stop.</h2>
-<p>One big button starts listening. The same place stops it, in red, so you always know whether Vale! is listening.</p>
-</article>
-<article class="feature">
-<p class="eyebrow">Your size</p>
-<h2>As big as you need.</h2>
-<p>A− and A+ make the words smaller or larger, up to very large type, in four high-contrast themes: light, dark, yellow on black and paper.</p>
-<p class="big" aria-hidden="true" style="font-size: 2.4rem">¿Vamos el domingo?</p>
-</article>
-<article class="feature">
-<p class="eyebrow">Private</p>
-<h2>Stays on your device.</h2>
-<p>Vale! is designed to recognize speech on the device itself: no audio and no transcripts are sent anywhere, there is no account, and it works without an internet connection.</p>
-</article>
-<article class="feature">
-<p class="eyebrow">Made for the table</p>
-<h2>Prop up an iPad.</h2>
-<p>The newest words stay huge at the bottom and the conversation stays readable above them. On an iPad or a Mac in front of you, the whole table can talk.</p>
-</article>
+<h2 id="tap-title" data-caption>Start. Read. <span class="accent">Stop.</span></h2>
+</div>
+<div class="tap">
+<button class="big-start" id="big-start" type="button" aria-pressed="false" aria-label="Start">
+<svg class="mic" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 14a3 3 0 0 0 3-3V5a3 3 0 0 0-6 0v6a3 3 0 0 0 3 3Zm5-3a5 5 0 0 1-10 0H5a7 7 0 0 0 6 6.92V21h2v-3.08A7 7 0 0 0 19 11h-2Z"/></svg>
+<svg class="square" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="5" y="5" width="14" height="14" rx="3"/></svg>
+</button>
+</div>
+</div>
+<div class="wrap">
+<p class="lede">One big button starts listening. The same place stops it, in red, with its own symbol and word, so you always know whether Vale! is listening. Nothing to set up first beyond allowing the microphone.</p>
+</div>
 </section>
 
-<section class="wrap">
-<div class="closing">
-<h2>Coming later</h2>
-<p>Vale! is in development and not yet on the App Store. It is meant to sit beside hearing care and hearing aids, never to replace them. Questions or ideas? Write to us on the <a href="support.html">support page</a>.</p>
+<section class="sizes" id="sizes" aria-labelledby="size-title">
+<div class="sticky wrap">
+<div>
+<p class="eyebrow">Your size</p>
+<h2 id="size-title" class="h-mid" data-caption>As big as you need.</h2>
+<p class="lede">A− and A+ go from 24 to 96 points in nine steps. The newest words stay the largest; older lines shrink above them.</p>
+</div>
+<p class="sample" id="sample" aria-hidden="true" lang="es">¿Vamos el domingo?</p>
+<ol class="ruler" id="ruler" aria-label="The nine text sizes">
+<li style="--h: 24">24 pt</li><li style="--h: 28">28 pt</li><li style="--h: 34">34 pt</li><li style="--h: 40">40 pt</li><li style="--h: 48">48 pt</li><li style="--h: 56">56 pt</li><li class="on" style="--h: 64">64 pt</li><li style="--h: 80">80 pt</li><li style="--h: 96">96 pt</li>
+</ol>
+</div>
+</section>
+
+<section aria-labelledby="themes-title">
+<div class="wrap block themes-head">
+<p class="eyebrow">Your colours</p>
+<h2 id="themes-title" data-caption>Four ways to read.</h2>
+<p class="lede">High-contrast caption colours, chosen apart from light and dark mode. Words Vale! may still change stay in a softer shade until they settle.</p>
+</div>
+<div class="band band-dia"><div class="wrap"><p data-caption lang="es">¿Quién quiere más pasta?</p><span>Día</span></div></div>
+<div class="band band-noche"><div class="wrap"><p data-caption lang="es">Yo, por favor, está buenísima.</p><span>Noche</span></div></div>
+<div class="band band-amarillo"><div class="wrap"><p data-caption lang="es">La tía Rosa llega el sábado.</p><span>Amarillo</span></div></div>
+<div class="band band-papel"><div class="wrap"><p data-caption lang="es">¿Vamos al mercado?</p><span>Papel</span></div></div>
+</section>
+
+<section class="block private" id="private" aria-labelledby="private-title">
+<div class="wrap">
+<p class="eyebrow">Private by design</p>
+<p class="zero" id="zero" aria-hidden="true">0</p>
+<h2 id="private-title" class="h-mid" data-caption><span class="sr">Zero </span>bytes of audio leave your device.</h2>
+<div class="facts">
+<div><h3>On the device</h3><p>Speech is recognized on your iPhone, iPad or Mac by Apple’s own recognizer, never in the cloud.</p></div>
+<div><h3>Works offline</h3><p>The first time you use a language, your device downloads Apple’s speech model for it, from Apple. After that, Vale! writes without internet.</p></div>
+<div><h3>Gone when you close it</h3><p>The text lives only while the app is open, unless you share it yourself. No account, no ads, no tracking.</p></div>
+</div>
+</div>
+</section>
+
+<section class="block" aria-labelledby="langs-title">
+<div class="wrap">
+<p class="eyebrow" id="langs-title">Listens in</p>
+<div class="langs" role="group" aria-labelledby="langs-title">
+<button type="button" data-lang="es" aria-pressed="true" lang="es">Español</button>
+<button type="button" data-lang="de" aria-pressed="false" lang="de">Deutsch</button>
+<button type="button" data-lang="en" aria-pressed="false">English</button>
+</div>
+<p class="said" id="said" lang="es" aria-live="polite">¿Quién quiere más pasta? Yo, por favor, está buenísima.</p>
+<p class="lede">Spanish by default, German or English if you choose. The language Vale! listens in is its own setting, apart from the app’s, which is English or Spanish.</p>
+</div>
+</section>
+
+<section class="block table" aria-labelledby="table-title">
+<div class="wrap center">
+<p class="eyebrow">Made for the table</p>
+<h2 id="table-title" data-caption>Prop it up.</h2>
+<p class="lede">An iPad standing in front of you is easier to read than a phone in your hand. On every screen, the text gets the room and the controls step aside.</p>
+<div class="picker js-only" role="group" aria-label="Show Vale! on">
+<button type="button" data-device="ipad" aria-pressed="true">iPad</button>
+<button type="button" data-device="iphone" aria-pressed="false">iPhone</button>
+<button type="button" data-device="sideways" aria-pressed="false">Sideways</button>
+<button type="button" data-device="mac" aria-pressed="false">Mac</button>
+</div>
+</div>
+<div class="wrap">
+<div class="device" id="device" data-device="ipad" role="img" aria-label="Vale! on iPad: the conversation in large type on the left, the controls in a rail on the right">
+<div class="screen">
+<div class="mac-bar"><i></i><i></i><i></i></div>
+<div class="mini">
+<p class="o" lang="es">La tía Rosa llega el sábado a las tres.</p>
+<p class="o" lang="es">¿Vamos el domingo al mercado del barrio?</p>
+<p class="n" lang="es">Sí, pero temprano, <span>antes de que</span></p>
+</div>
+<div class="rail"><i></i><i></i><b></b></div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="block care" aria-labelledby="care-title">
+<div class="wrap split">
+<h2 id="care-title">Beside hearing care. Never instead of it.</h2>
+<p class="lede">Captions complement a hearing check-up and hearing aids. Vale! is for the moments in between: the dinner, the noisy room, the conversation you would rather read along. It can make mistakes, so don’t rely on it alone for anything important.</p>
+</div>
+</section>
+
+<section class="block" aria-labelledby="later-title">
+<div class="wrap">
+<p class="eyebrow">Coming later</p>
+<h2 id="later-title" class="h-mid" data-caption>And it keeps growing.</h2>
+<ul class="later">
+<li class="card">
+<span class="tag">Planned</span>
+<span class="art speakers" aria-hidden="true"><span>Ana</span><span>Luis</span><span>Sofía</span></span>
+<h3>Who said it</h3><p>Each voice in its own colour.</p>
+</li>
+<li class="card">
+<span class="tag">Planned</span>
+<span class="art typing" aria-hidden="true"><span lang="es">Sí, me encanta<i></i></span></span>
+<h3>Type back</h3><p>Answer in writing, in big letters.</p>
+</li>
+<li class="card">
+<span class="tag">Planned</span>
+<span class="art sounds" aria-hidden="true">
+<svg viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15L6 16Z M10 20a2 2 0 0 0 4 0"/></svg>
+<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 14.5a5 5 0 0 0 8 0 M9 9.5h.01 M15 9.5h.01"/></svg>
+<svg viewBox="0 0 24 24"><path d="M9 18V5l11-2v13 M9 18a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z M20 16a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/></svg>
+</span>
+<h3>Sounds</h3><p>The doorbell, a laugh, music.</p>
+</li>
+</ul>
 </div>
 </section>
 </main>
 
-<footer>
+<footer class="site-foot">
 <div class="wrap">
-<p>© 2026 Vale!</p>
-<p>
+<p class="bye" aria-hidden="true" lang="es">Sí, pero temprano, <span>antes de que</span><i class="caret"></i></p>
+<div class="foot">
+<p>© 2026 Vale! · Live Transcripts</p>
+<nav aria-label="Legal">
 <a href="support.html">Support</a>
 <a href="https://vale-live-transcripts.github.io/vale-legal-docs/impressum.en.html">Legal Notice</a>
 <a href="https://vale-live-transcripts.github.io/vale-legal-docs/datenschutzerklaerung.en.html">Privacy Policy</a>
 <a href="https://vale-live-transcripts.github.io/vale-legal-docs/nutzungsbedingungen.en.html">Terms of Use</a>
-</p>
+</nav>
+</div>
 </div>
 </footer>
 </body>
