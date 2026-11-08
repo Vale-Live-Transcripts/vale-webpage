@@ -1,7 +1,7 @@
 # Vale! website
 
 The page for Vale!, live transcripts in large type for iPhone, iPad and Mac
-(in development): a landing page, a support page with the feedback form,
+(on the App Store): a landing page, a support page with the feedback form,
 and their stylesheet. Static HTML, no build step.
 
 ## Published at
@@ -37,9 +37,12 @@ it are gone.
   hero plays the pitch, then the made-up dinner, in the caption theme its
   dots pick; headlines with `data-caption` arrive word by word in the
   partial shade and settle. Loops stop while their section is off screen.
-- **Name only what the app really does.** Until Vale! is on the App Store
-  the page says "In development". When it ships, add the official App Store
-  badge linking to the listing.
+- **Name only what the app really does.** Vale! is on the App Store
+  (<https://apps.apple.com/app/vale/id6831812836>): the hero, at the top of
+  the landing page, and the support pages' first answer carry Apple's
+  official badge, `images/app-store-badge.svg`, linking to the listing. Show
+  it as it is (no shadow, filter or recolouring), 54 px tall with a quarter
+  of its height clear around it, in English on both languages' pages.
 - The palette in `:root` and its dark block is the app's chrome tokens from
   the master design canvas (see the app repo's CLAUDE.md, "Master design"),
   and the caption themes in `scenes.js` and the bands are ValeKit's
