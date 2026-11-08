@@ -13,6 +13,7 @@ GitHub Pages serves `main` from the repo root:
 |---|---|---|
 | `index.html` | `…/vale-webpage/` | Marketing URL in App Store Connect |
 | `support.html` | `…/vale-webpage/support.html` | Support URL in App Store Connect and the app's Settings ▸ Support |
+| `support.es.html` | `…/vale-webpage/support.es.html` | Support URL of the Spanish (Mexico) listing in App Store Connect |
 
 The app will name these addresses in one place, its `LegalLinks`, in the
 private app repo. If a page is renamed or the site moves, change that in the
@@ -46,7 +47,9 @@ it are gone.
 - The site is drawn on the master design's Website page (page 11): change a
   page here, and its boards change in the same task.
 - `support.html` holds the questions people ask most, the contact email and
-  the feedback form. The form posts to the same endpoint and contract as the
+  the feedback form; `support.es.html` is the same page in Spanish, linked
+  from the header and the footer of each. A change to one changes the other
+  in the same commit. The form posts to the same endpoint and contract as the
   app's Send Feedback, documented in
   [vale-feedback](https://github.com/Vale-Live-Transcripts/vale-feedback),
   and the report becomes an issue in the app's private repo. It sends the

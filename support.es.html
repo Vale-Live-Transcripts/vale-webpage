@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Soporte – Vale!</title>
+<meta name="description" content="Ayuda con Vale!, transcripción en vivo en letra grande: respuestas a las preguntas más comunes, el correo de contacto y un formulario para informar de un problema o proponer una idea.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="theme-color" content="#f4f2ef" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
+<link rel="stylesheet" href="style.css">
+<link rel="alternate" hreflang="en" href="support.html">
+<link rel="alternate" hreflang="es" href="support.es.html">
+</head>
+<body class="support">
+<a class="skip" href="#main">Saltar al contenido</a>
+<header class="top">
+<div class="wrap top-inner">
+<a class="brand" href="./"><img src="favicon.png" alt="" width="32" height="32">Vale!</a>
+<nav aria-label="Sitio"><a href="./">Inicio</a><a href="#questions">Preguntas</a><a href="#feedback-heading">Comentarios</a><a href="support.html" hreflang="en" lang="en">English</a></nav>
+</div>
+</header>
+
+<main id="main">
+<section class="support-head">
+<div class="wrap">
+<p class="eyebrow">Ayuda</p>
+<h1>Soporte</h1>
+<p class="lede">Respuestas a las preguntas más comunes y un formulario para informar de un problema o proponer una idea. También puedes escribir a <a href="mailto:mateoas@icloud.com">mateoas@icloud.com</a>.</p>
+</div>
+</section>
+
+<div class="wrap page">
+<h2 id="questions">Preguntas</h2>
+<div class="faq">
+<details>
+<summary>¿Cuándo puedo tener Vale!?</summary>
+<p>Vale! llegará pronto al App Store para iPhone, iPad y Mac. Este sitio lo enlazará en cuanto esté disponible.</p>
+</details>
+<details>
+<summary>¿Mis conversaciones salen de mi dispositivo?</summary>
+<p>No. Vale! convierte la voz en texto en el propio dispositivo: ningún audio ni ningún texto se envía a nosotros ni a nadie más, y no hay cuenta. El texto se guarda solo mientras la app está abierta, y sale del dispositivo solo si tú lo compartes. La <a href="https://vale-live-transcripts.github.io/vale-legal-docs/datenschutzerklaerung.es.html">política de privacidad</a> describe la app en detalle.</p>
+</details>
+<details>
+<summary>¿Qué idiomas entiende?</summary>
+<p>Español, alemán e inglés: eliges cuál en Ajustes. La app está en español o en inglés. Podrían llegar más idiomas.</p>
+</details>
+<details>
+<summary>¿Cómo consigo los mejores subtítulos en una sala?</summary>
+<p>Pon el dispositivo cerca de quienes hablan, idealmente en el centro de la mesa, y mantén bajo el ruido de fondo, como la televisión. Un pequeño micrófono externo suele ayudar más que cualquier otra cosa. Un iPad de pie frente a ti se lee mejor que un teléfono en la mano.</p>
+</details>
+<details>
+<summary>¿Vale! reemplaza a los audífonos?</summary>
+<p>No. Vale! puede ayudarte a seguir una conversación, pero comete errores, y no sustituye una prueba de audición, los audífonos ni el consejo de un audiólogo. No dependas solo de la app en emergencias ni en conversaciones médicas o legales importantes.</p>
+</details>
+</div>
+
+<h2 id="feedback-heading">Enviar comentarios</h2>
+<form id="feedback" novalidate aria-labelledby="feedback-heading">
+<fieldset class="segmented">
+<legend>Tipo</legend>
+<label><input type="radio" name="type" value="bug" checked> Un problema</label>
+<label><input type="radio" name="type" value="feature"> Una idea</label>
+</fieldset>
+
+<label for="title">Título</label>
+<input id="title" name="title" type="text" maxlength="200" autocomplete="off" required>
+
+<label for="body">Descripción</label>
+<textarea id="body" name="body" rows="8" required></textarea>
+<p class="hint">Tu informe llega al registro privado de incidencias de Vale!. No incluyas nada personal que no quieras que leamos, ni pegues conversaciones de otras personas; si quieres una respuesta, escríbenos por correo.</p>
+
+<!-- Left empty by people; bots that fill every field are dropped. -->
+<div class="trap" aria-hidden="true">
+<label for="website">Sitio web</label>
+<input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+</div>
+
+<p id="status" role="status" aria-live="polite"></p>
+<button type="submit">Enviar</button>
+</form>
+</div>
+</main>
+
+<footer class="site-foot">
+<div class="wrap">
+<div class="foot">
+<p>© 2026 Vale! · Live Transcripts</p>
+<nav aria-label="Legal">
+<a href="./">Inicio</a>
+<a href="https://vale-live-transcripts.github.io/vale-legal-docs/impressum.en.html" hreflang="en">Aviso legal</a>
+<a href="https://vale-live-transcripts.github.io/vale-legal-docs/datenschutzerklaerung.es.html">Política de privacidad</a>
+<a href="https://vale-live-transcripts.github.io/vale-legal-docs/nutzungsbedingungen.en.html" hreflang="en">Condiciones de uso</a>
+<a href="support.html" hreflang="en" lang="en">English</a>
+</nav>
+</div>
+</div>
+</footer>
+
+<script>
+// Posts to the same endpoint and contract as the app's feedback
+// (Vale-Live-Transcripts/vale-feedback): { type, title, body, version }.
+// The function writes `version` into the issue footer as `_Vale! v<version>_`.
+const ENDPOINT = 'https://vale-feedback.vercel.app/api/feedback';
+const WEB_VERSION = '? via website';
+
+const form = document.getElementById('feedback');
+const status = document.getElementById('status');
+const button = form.querySelector('button');
+
+function show(message, kind) {
+    status.textContent = message;
+    status.className = kind || '';
+}
+
+form.addEventListener('submit', async (event) => {
+    event.preventDefault();
+    const title = form.title.value.trim();
+    const body = form.body.value.trim();
+    if (!title || !body) {
+        show('El título y la descripción son obligatorios.', 'error');
+        return;
+    }
+    if (form.website.value) {
+        form.reset();
+        show('¡Gracias! Tus comentarios se enviaron.', 'ok');
+        return;
+    }
+
+    button.disabled = true;
+    show('Enviando…');
+    let response;
+    try {
+        response = await fetch(ENDPOINT, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ type: form.type.value, title, body, version: WEB_VERSION }),
+        });
+    } catch {
+        button.disabled = false;
+        show('No se pudo conectar con el servicio de comentarios. Revisa tu conexión e inténtalo de nuevo.', 'error');
+        return;
+    }
+    const result = await response.json().catch(() => null);
+    button.disabled = false;
+    if (response.ok && result && result.ok === true) {
+        form.reset();
+        show('¡Gracias! Tus comentarios se enviaron.', 'ok');
+    } else {
+        show('No se pudieron enviar los comentarios. Inténtalo de nuevo.', 'error');
+    }
+});
+</script>
+</body>
+</html>
