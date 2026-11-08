@@ -277,12 +277,21 @@ section.block {
     min-width: 0;
 }
 
+/* The live pill, and Apple's badge beside it at the top of the stage. */
+.stage-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.9rem 1.5rem;
+    margin: 0 0 auto;
+}
+
 .pill {
-    align-self: flex-start;
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    margin: 0 0 auto;
+    margin: 0;
     padding: 0.35rem 0.85rem;
     border-radius: 999px;
     background: color-mix(in srgb, var(--cfg) 10%, transparent);
@@ -404,6 +413,21 @@ section.block {
 .btn.ghost {
     background: color-mix(in srgb, var(--cfg) 13%, transparent);
     color: inherit;
+}
+
+/* Apple's badge artwork, shown as it is: no shadow, filter or recolouring, 54 px tall,
+   with at least a quarter of its height clear around it. The radius only rounds the
+   focus ring to the badge's corners. */
+.badge {
+    display: inline-block;
+    vertical-align: top;
+    border-radius: 9px;
+}
+
+.badge img {
+    display: block;
+    width: auto;
+    height: 54px;
 }
 
 .cue {
