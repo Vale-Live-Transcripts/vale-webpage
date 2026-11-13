@@ -6,16 +6,21 @@ and their stylesheet. Static HTML, no build step.
 
 ## Published at
 
-GitHub Pages serves `main` from the repo root:
-<https://vale-live-transcripts.github.io/vale-webpage/>
+GitHub Pages serves `main` from the repo root at
+<https://vale.mateoarenas.dev/>, a subdomain of `mateoarenas.dev`: the
+`CNAME` file here names it, and a CNAME record at Porkbun, where the domain is
+registered, points it to `vale-live-transcripts.github.io`. The old address,
+`https://vale-live-transcripts.github.io/vale-webpage/`, redirects there page
+for page, so the links already out there (App Store Connect's and older
+builds' among them) keep working.
 
 | Page | Address | Used as |
 |---|---|---|
-| `index.html` | `…/vale-webpage/` | Marketing URL in App Store Connect |
-| `support.html` | `…/vale-webpage/support.html` | Support URL in App Store Connect and the app's Settings ▸ Support |
-| `support.es.html` | `…/vale-webpage/support.es.html` | Support URL of the Spanish (Mexico) listing in App Store Connect |
+| `index.html` | `https://vale.mateoarenas.dev/` | Marketing URL in App Store Connect |
+| `support.html` | `…/support.html` | Support URL in App Store Connect and the app's Settings ▸ Support |
+| `support.es.html` | `…/support.es.html` | Support URL of the Spanish (Mexico) listing in App Store Connect |
 
-The app will name these addresses in one place, its `LegalLinks`, in the
+The app names these addresses in one place, its `LegalLinks`, in the
 private app repo. If a page is renamed or the site moves, change that in the
 same release, and keep the old address answering until the builds that use
 it are gone.
@@ -57,10 +62,10 @@ it are gone.
   [vale-feedback](https://github.com/Vale-Live-Transcripts/vale-feedback),
   and the report becomes an issue in the app's private repo. It sends the
   version as `? via website`. The function only answers browsers from this
-  site's origin (`https://vale-live-transcripts.github.io`), so the form
-  fails from a local preview, before the Vercel project exists, or if the
-  site moves to another domain: add the new origin to `ALLOWED_ORIGINS` in
-  the function first.
+  site's origins (`https://vale.mateoarenas.dev`, and the old
+  `https://vale-live-transcripts.github.io`), so the form fails from a local
+  preview or if the site moves to another domain: add the new origin to
+  `ALLOWED_ORIGINS` in the function first.
 - `images/link-preview.png` (1200 × 630, `og:image`) is the hero's finished
   frame: the landing page rendered in headless Chrome at 1200 × 630 and 2×,
   with JavaScript off, then scaled to 1200 × 630 with `sips`. Render it again
