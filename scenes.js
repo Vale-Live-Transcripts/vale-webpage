@@ -259,6 +259,94 @@ $$('.langs button').forEach((button) => button.addEventListener('click', () => {
     speak(button.dataset.lang);
 }));
 
+// Translate: the dinner heard in German and read in Spanish, drawn as the app's translated
+// captions are. The HTML is the finished frame (the third and fourth lines settled, the last
+// words still being heard); the toggle turns the translation off and on, and under motion the
+// dinner plays while the section is on screen.
+const reading = {
+    lines: $('#tlines'),
+    toggle: $('#translate-toggle'),
+    settled: [2, 3],
+    pending: DINNER.de[4],
+    translates: true,
+    run: 0,
+};
+
+function element(tag, className, text, language) {
+    const node = document.createElement(tag);
+    if (className) node.className = className;
+    if (text) node.textContent = text;
+    if (language) node.lang = language;
+    return node;
+}
+
+function heardLine(text, tagged) {
+    const line = element('p', 'heard', '', 'de');
+    if (tagged) line.append(element('b', '', 'DE'));
+    line.append(text);
+    return line;
+}
+
+function drawReading() {
+    const lines = [];
+    reading.settled.forEach((index, i) => {
+        const newest = i === reading.settled.length - 1;
+        const line = element('div', 'tline ' + (reading.translates && newest ? 'now' : 'past'));
+        if (reading.translates) line.append(element('p', 'read', DINNER.es[index], 'es'));
+        line.append(heardLine(DINNER.de[index], reading.translates));
+        lines.push(line);
+    });
+    const partial = element('p', reading.translates ? 'tline partial' : 'tline now pending', '', 'de');
+    if (reading.translates) partial.append(element('b', '', 'DE'));
+    const words = element('span', '', reading.pending);
+    words.id = 'partial';
+    partial.append(words);
+    if (reading.translates) partial.append('…');
+    partial.hidden = !reading.pending;
+    lines.push(partial);
+    reading.lines.replaceChildren(...lines);
+    $('#reading-pill').textContent = reading.translates
+        ? 'Listening in German, translating into Spanish' : 'Listening in German';
+}
+
+reading.toggle.addEventListener('click', () => {
+    reading.translates = !reading.translates;
+    reading.toggle.setAttribute('aria-pressed', String(reading.translates));
+    drawReading();
+});
+
+// Each line arrives word by word as heard, settles, and is read in Spanish. The box keeps the
+// finished frame's height, so the page below it never jumps.
+async function readAlong() {
+    const id = ++reading.run;
+    if (!reading.lines.style.minHeight) reading.lines.style.minHeight = reading.lines.offsetHeight + 'px';
+    await sleep(1200);
+    while (id === reading.run) {
+        for (const index of [2, 3, 4]) {
+            reading.settled = [index - 2, index - 1];
+            reading.pending = '';
+            drawReading();
+            for (const word of DINNER.de[index].split(' ')) {
+                await sleep(260 + Math.random() * 180);
+                if (id !== reading.run) return;
+                reading.pending += (reading.pending ? ' ' : '') + word;
+                const partial = $('#partial');
+                partial.parentElement.hidden = false;
+                partial.append(element('span', 'w', (partial.textContent ? ' ' : '') + word));
+            }
+            await sleep(index === 4 ? 4000 : 700);
+            if (id !== reading.run) return;
+        }
+    }
+}
+
+if (!reduceMotion) {
+    watch($('#reading'), (visible) => {
+        if (visible) readAlong(); else reading.run++;
+    });
+    addEventListener('resize', () => { reading.lines.style.minHeight = ''; });
+}
+
 // Made for the table: one drawn device in each platform's shape.
 $$('.picker button').forEach((button) => button.addEventListener('click', () => {
     press($$('.picker button'), button);

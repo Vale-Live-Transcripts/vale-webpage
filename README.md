@@ -42,6 +42,11 @@ it are gone.
   hero plays the pitch, then the made-up dinner, in the caption theme its
   dots pick; headlines with `data-caption` arrive word by word in the
   partial shade and settle. Loops stop while their section is off screen.
+- **Translate** plays the made-up dinner heard in German and read in
+  Spanish, drawn as the app's translated captions are: its HTML is the
+  finished frame (two lines settled and translated, each with the German
+  small under it, and the last words still as heard), and its toggle turns
+  the translation off and on, as the app's Translate button does.
 - **Name only what the app really does.** Vale! is on the App Store
   (<https://apps.apple.com/app/vale/id6831812836>): the hero, at the top of
   the landing page, and the support pages' first answer carry Apple's
