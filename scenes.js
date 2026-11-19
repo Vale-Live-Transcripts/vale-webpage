@@ -26,11 +26,11 @@ function watch(element, seen, options = { threshold: 0.35 }) {
 // SampleConversation). Never a real conversation.
 const DINNER = {
     es: ['¿Quién quiere más pasta?', 'Yo, por favor, está buenísima.', 'La tía Rosa llega el sábado a las tres.',
-        '¿Vamos el domingo al mercado del barrio?', 'Sí, pero temprano, antes de que'],
+        '¿Vamos el domingo al mercado del barrio?', 'Sí, pero temprano, antes de que se llene.'],
     de: ['Wer möchte noch Nudeln?', 'Ich, bitte, die sind köstlich.', 'Tante Rosa kommt am Samstag um drei.',
-        'Gehen wir am Sonntag auf den Markt?', 'Ja, aber früh, bevor'],
+        'Gehen wir am Sonntag auf den Markt?', 'Ja, aber früh, bevor es voll wird.'],
     en: ['Who wants more pasta?', "Me, please, it's delicious.", 'Aunt Rosa arrives on Saturday at three.',
-        'Shall we go to the market on Sunday?', 'Yes, but early, before'],
+        'Shall we go to the market on Sunday?', 'Yes, but early, before it gets crowded.'],
 };
 const PITCH = ['Every word, big and clear.', 'Vale! writes down what is said in the room,', 'live, and in large type.'];
 
@@ -287,6 +287,11 @@ function heardLine(text, tagged) {
     return line;
 }
 
+// Words not yet translated trail off, as in the app, unless they already end a sentence.
+function trailsOff(words) {
+    return !/[.?!…]$/.test(words);
+}
+
 function drawReading() {
     const lines = [];
     reading.settled.forEach((index, i) => {
@@ -301,7 +306,12 @@ function drawReading() {
     const words = element('span', '', reading.pending);
     words.id = 'partial';
     partial.append(words);
-    if (reading.translates) partial.append('…');
+    if (reading.translates) {
+        const more = element('span', '', '…');
+        more.id = 'more';
+        more.hidden = !trailsOff(reading.pending);
+        partial.append(more);
+    }
     partial.hidden = !reading.pending;
     lines.push(partial);
     reading.lines.replaceChildren(...lines);
@@ -333,6 +343,8 @@ async function readAlong() {
                 const partial = $('#partial');
                 partial.parentElement.hidden = false;
                 partial.append(element('span', 'w', (partial.textContent ? ' ' : '') + word));
+                const more = $('#more');
+                if (more) more.hidden = !trailsOff(reading.pending);
             }
             await sleep(index === 4 ? 4000 : 700);
             if (id !== reading.run) return;
